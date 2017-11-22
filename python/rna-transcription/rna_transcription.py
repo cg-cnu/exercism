@@ -5,9 +5,6 @@ def to_rna(dna_strand):
         'T': 'A',
         'A': 'U'
     }
-    try:
-        set(mapping.keys) == set(dna_strand)
-    except:
+    if not set(dna_strand) <= set(mapping.keys()):
         raise ValueError
-
-    map(dna_strand.replace,        )
+    return "".join([mapping[i] for i in dna_strand])
