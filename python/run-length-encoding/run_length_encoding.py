@@ -1,33 +1,12 @@
+
 def decode(string):
     import re
-    c = re.split("([0-9]+)([A-Z])", string)
-    c = [i for i in c if i != '']
-    print c
-    d = ''
-    for i in c:
-        if re.search("[0-9]", i):
-            x = int(i)
-            d * x 
-        else:
-    print d 
+    patterns = re.findall(r"(\d*)([A-z\s])", string)
+    return "".join(int(n) * a if n else a for n, a in patterns)
 
 def encode(string):
-    final = []
-    cur = ''
-    for index, i in enumerate(string):
-        try:
-            if i == string[index+1]:
-                cur += i
-            else:
-                final.append(cur+i)
-                cur = ''
-        except IndexError:
-            final.append(cur+i)
-
-    strng = ''
-    for j in final:
-        if len(j) == 1:
-            strng += j[0]
-        else:
-            strng += str(len(j)) + j[0]
-    return strng
+    from itertools import groupby
+    encoded = ''
+    for (char, count) in [(char, len(list(charG))) for char, charG in groupby(string)]:
+        encoded += ('' if count == 1 else str(count) ) + char
+    return encoded
