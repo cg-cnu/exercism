@@ -2,14 +2,14 @@ def decode(string):
     import re
     c = re.split("([0-9]+)([A-Z])", string)
     c = [i for i in c if i != '']
-    d = []
+    print c
+    d = ''
     for i in c:
-        try:
-            i = int(i)
-            d.append(i)
-        except ValueError:
-            d.append(i)
-
+        if re.search("[0-9]", i):
+            x = int(i)
+            d * x 
+        else:
+    print d 
 
 def encode(string):
     final = []
@@ -23,7 +23,6 @@ def encode(string):
                 cur = ''
         except IndexError:
             final.append(cur+i)
-    # print final
 
     strng = ''
     for j in final:
@@ -32,6 +31,3 @@ def encode(string):
         else:
             strng += str(len(j)) + j[0]
     return strng
-
-# encode('WWWWWWWWWWWWBWWWWWWWWWWWWBBBWWWWWWWWWWWWWWWWWWWWWWWWB')
-decode('2AB3CD4E')
